@@ -12,17 +12,17 @@
   </properties>
 	
   <distributionManagement>
-          <repositry>
+          <repository>
 	    <id>nexus</id>
 	    <name>Nexus release repositry</name>
 	    <url>http://54.167.100.187:8081/repository/maven-releases/</url>
-	  </repositry>
+	  </repository>
 	  
-	  <snapshotRepositry>
+	  <snapshotRepository>
 		  <id>nexus</id>
 		  <name>Nexus Snapshot Repositry</name>
 		  <url>http://54.167.100.187:8081/repository/maven-snapshots/</url>
-	  </snapshotRepositry>
+	  </snapshotRepository>
   </distributionManagement>
 	
   <build>
