@@ -4,6 +4,27 @@
   <artifactId>onlinebookstore</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+	
+  <properties>
+	  <sonar.host.url>http://3.91.189.212:9000/</sonar.host.url>
+	  <sonar.user>admin</sonar.user>
+	  <sonar.password>House@4461</sonar.password>
+  </properties>
+	
+  <distributionManagement>
+          <repositry>
+	    <id>nexus</id>
+	    <name>Nexus release repositry</name>
+	    <url>http://54.167.100.187:8081/repository/maven-releases/</url>
+	  </repositry>
+	  
+	  <snapshotRepositry>
+		  <id>nexus</id>
+		  <name>Nexus Snapshot Repositry</name>
+		  <url>http://54.167.100.187:8081/repository/maven-snapshots/</url>
+	  </snapshotRepositry>
+  </distributionManagement>
+	
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
