@@ -7,7 +7,7 @@ stages
     stage('one')
     {
         steps{
-            echo "Hello Jenkins"
+            echo "Hello Jenkins !!!!!"
         }
     }
     
