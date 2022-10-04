@@ -1,0 +1,21 @@
+pipeline
+{
+agent any
+
+stages
+{
+    stage('one')
+    {
+        steps{
+            echo "Hello Jenkins"
+        }
+    }
+    
+    stage('Two')
+    {
+        steps{
+            echo "Multibranch prep"
+        }
+    }
+}
+}
