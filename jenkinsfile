@@ -1,0 +1,21 @@
+pipeline
+{
+agent any
+
+stages
+{
+    stage('one')
+    {
+        steps{
+            echo "Hello Devops!"
+        }
+    }
+    
+    stage('Two')
+    {
+        steps{
+            echo "Multibranch preparation"
+        }
+    }
+}
+}
