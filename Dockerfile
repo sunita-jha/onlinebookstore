@@ -1,3 +1,5 @@
 FROM tomcat:10
 
-COPY target/*.war /usr/local/tomcat/webapps/onlinestore.war
+ENV HOME /usr/local/tomcat/webapps
+
+COPY target/*.war $HOME/onlinestore.war
