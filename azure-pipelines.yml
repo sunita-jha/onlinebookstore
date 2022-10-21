@@ -47,10 +47,10 @@ steps:
 #     scriptType: 'bash'
 #     scriptLocation: 'inlineScript'
 #     inlineScript: 'az storage blob upload-batch --destination ${JOB_NAME} --source ./text --account-name $AZURE_STORAGE_ACCOUNT'
-- task: Docker@2
-  inputs:
-    containerRegistry: 'myregistrydemo1'
-    command: 'login'
+# - task: Docker@2
+#   inputs:
+#     containerRegistry: 'myregistrydemo1'
+#     command: 'login'
 - task: Docker@2
   inputs:
     containerRegistry: 'myregistrydemo1'
