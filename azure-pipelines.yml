@@ -9,7 +9,7 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 variables:
- registry: akhillearn
+ registry: myregistrydemo1
  dockerfilePath: './onlinebookstore/Dockerfile'
  DOCKER-REPOSITORY-NAME: image1
  port: 8080:8080
@@ -41,19 +41,19 @@ steps:
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'Azure for Students(f0d42101-d8e2-4467-abb3-ad2f7301dc3e)'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'az storage blob upload-batch --destination ${JOB_NAME} --source ./text --account-name $AZURE_STORAGE_ACCOUNT'
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'Azure for Students(f0d42101-d8e2-4467-abb3-ad2f7301dc3e)'
+#     scriptType: 'bash'
+#     scriptLocation: 'inlineScript'
+#     inlineScript: 'az storage blob upload-batch --destination ${JOB_NAME} --source ./text --account-name $AZURE_STORAGE_ACCOUNT'
 - task: Docker@2
   inputs:
-    containerRegistry: 'akhillearn'
+    containerRegistry: 'myregistrydemo1'
     command: 'login'
 - task: Docker@2
   inputs:
-    containerRegistry: 'akhillearn'
+    containerRegistry: 'myregistrydemo1'
     repository: 'image1'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
