@@ -51,23 +51,23 @@ steps:
 #   inputs:
 #     containerRegistry: 'myregistrydemo1'
 #     command: 'login'
-# - task: Docker@2
+- task: Docker@2
+  inputs:
+    containerRegistry: 'myregistrydemo1'
+    repository: 'image1'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+# - task: DockerInstaller@0
 #   inputs:
-#     containerRegistry: 'myregistrydemo1'
-#     repository: 'image1'
-#     command: 'buildAndPush'
-#     Dockerfile: '**/Dockerfile'
-- task: DockerInstaller@0
-  inputs:
-    dockerVersion: '17.09.0-ce'
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'Free Trial (7efefb00-e17c-4d85-a4ce-d13264a86786)'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: |
-      docker login $(registry)
-              docker build -f $(dockerfilePath) . -t $(DOCKER-REPOSITORY-NAME)
-              docker run -d -p $(port) $(DOCKER-REPOSITORY-NAME)
-              docker tag $(DOCKER-REPOSITORY-NAME) $(registry).azurecr.io/$(DOCKER-REPOSITORY-NAME):latest
-              docker tag $(DOCKER-REPOSITORY-NAME) $(registry).azurecr.io/$(DOCKER-REPOSITORY-NAME):$(tag)
+#     dockerVersion: '17.09.0-ce'
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'Free Trial (7efefb00-e17c-4d85-a4ce-d13264a86786)'
+#     scriptType: 'bash'
+#     scriptLocation: 'inlineScript'
+#     inlineScript: |
+#       docker login $(registry)
+#               docker build -f $(dockerfilePath) . -t $(DOCKER-REPOSITORY-NAME)
+#               docker run -d -p $(port) $(DOCKER-REPOSITORY-NAME)
+#               docker tag $(DOCKER-REPOSITORY-NAME) $(registry).azurecr.io/$(DOCKER-REPOSITORY-NAME):latest
+#               docker tag $(DOCKER-REPOSITORY-NAME) $(registry).azurecr.io/$(DOCKER-REPOSITORY-NAME):$(tag)
