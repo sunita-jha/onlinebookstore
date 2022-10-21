@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 variables:
  registry: myregistrydemo1.azurecr.io
- dockerfilePath: './onlinebookstore/Dockerfile'
+ dockerfilePath: '**/Dockerfile'
  DOCKER-REPOSITORY-NAME: image1
  port: 8080:8080
  tag: $(Build.Buildnumber)
