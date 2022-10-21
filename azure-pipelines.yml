@@ -16,7 +16,7 @@ variables:
  tag: $(Build.Buildnumber)
  AZURE_STORAGE_ACCOUNT: myblobstoragedemoaccount
  JOB_NAME: myblobcontainer
- dockerRegistryServiceConnection: '3144913a-b6b4-463d-adf0-c9e18fe78f3f'
+ dockerRegistryServiceConnection: 'arc-registry'
 
 steps:
 - task: Maven@3
@@ -56,7 +56,7 @@ steps:
   displayName: Build and push an image to container registry
   inputs:
        command: buildAndPush
-       repository: $(imageRepository)
+       repository: $(DOCKER-REPOSITORY-NAME)
        dockerfile: $(dockerfilePath)
        containerRegistry: $(dockerRegistryServiceConnection)
        tags: |
