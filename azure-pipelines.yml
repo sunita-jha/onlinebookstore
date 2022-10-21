@@ -62,7 +62,7 @@ steps:
     dockerVersion: '17.09.0-ce'
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'Azure for Students(f0d42101-d8e2-4467-abb3-ad2f7301dc3e)'
+    azureSubscription: 'Free Trial (7efefb00-e17c-4d85-a4ce-d13264a86786)'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
