@@ -65,14 +65,13 @@ steps:
        containerRegistry: $(dockerRegistryServiceConnection)
        tags: |
           $(tag)
-# - task: KubernetesManifest@0
-#   inputs:
-#     action: 'deploy'
-#     kubernetesServiceConnection: 'kubernetes'
-#     manifests: |
-#                 $(Pipeline.Workspace)/deployment.yml
-#                 $(Pipeline.Workspace)/service.yml
-#     imagePullSecrets: '$(imagePullSecret)'
+- task: KubernetesManifest@0
+  inputs:
+    action: 'deploy'
+    kubernetesServiceConnection: 'kubernetes'
+    manifests: |
+                $(Build.ArtifactStagingDirectory)/drop/deployment.yml
+    imagePullSecrets: '$(imagePullSecret)'
 
 # - task: DockerInstaller@0
 #   inputs:
