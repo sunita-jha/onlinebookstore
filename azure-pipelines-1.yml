@@ -50,8 +50,8 @@ stages:
         tags: |
           $(tag)
 
-    - upload: manifests
-      artifact: manifests
+    # - upload: manifests
+    #   artifact: manifests
 
 - stage: Deploy
   displayName: Deploy stage
@@ -79,8 +79,8 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/manifests/deployment.yml
-                $(Pipeline.Workspace)/manifests/service.yml
+                $(Pipeline.Workspace)/deployment.yml
+                # $(Pipeline.Workspace)/manifests/service.yml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
