@@ -80,7 +80,6 @@ stages:
               action: deploy
               manifests: |
                 deployment.yaml
-                # $(Pipeline.Workspace)/manifests/service.yml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
