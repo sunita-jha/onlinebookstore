@@ -1,10 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: image1
+  name: onlinebookstore
 spec:
-    type: LoadBalancer
-    ports:
-    - port: 8080 
-    selector:
-        app: image1
+  type: LoadBalancer
+  selector:
+    app: onlinebookstore
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
