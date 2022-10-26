@@ -16,4 +16,4 @@ spec:
         - name: image1 
           image: myregistrydemo1.azurecr.io/image1
           ports:
-          - containerPort: 80
+          - containerPort: 8080
