@@ -79,9 +79,9 @@ stages:
           dockerRegistryEndpoint: 'myregistrydemo1'
       - task: KubernetesManifest@0
         inputs:
-         action: 'deploy'
-         kubernetesServiceConnection: 'kubernetesdemo'
-         namespace: 'default'
-         manifests: |
-           '$(Pipeline.Workspace)/manifests/deployment.yml'
-           '$(Pipeline.Workspace)/manifests/service.yml'
+          action: 'deploy'
+          kubernetesServiceConnection: 'kubernetesdemo'
+          namespace: 'default'
+          manifests: |
+                $(Pipeline.Workspace)/manifests/deployment.yml
+                $(Pipeline.Workspace)/manifests/service.yml
