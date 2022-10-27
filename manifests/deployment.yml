@@ -1,7 +1,7 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: onlinebookstore
+  name: onlinebookstore 
 spec:
   replicas: #replicaNo#
   selector:
@@ -16,4 +16,4 @@ spec:
         - name: onlinebookstore 
           image: myregistrydemo1.azurecr.io/onlinebookstore
           ports:
-          - containerPort: 8080
+          - containerPort: 80
