@@ -10,7 +10,7 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'cc59594f-8e01-4c50-b89f-62a3e2e307ca'
+  dockerRegistryServiceConnection: 'myregistrydemo1'
   imageRepository: 'onlinebookstore'
   containerRegistry: 'myregistrydemo1.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
@@ -28,6 +28,15 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
+    - task: Maven@4
+      inputs:
+        mavenPomFile: 'pom.xml'
+        publishJUnitResults: false
+        javaHomeOption: 'JDKVersion'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        sonarQubeRunAnalysis: false
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
@@ -37,3 +46,42 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+          latest 
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Pipeline.Workspace)/s/manifests'
+        artifact: 'manifests'
+        publishLocation: 'pipeline'
+
+- stage: Deploy
+  displayName: Deploy to Dev
+  dependsOn: Build
+  variables:
+   acrsecret: k8secretexample
+  jobs:
+    - job: Deploy
+      displayName: Deploy to AKS
+      pool:
+       vmImage: $(vmImageName)
+      steps:
+      - task: DownloadPipelineArtifact@2
+        inputs:
+          buildType: 'current'
+          artifactName: 'manifests'
+          targetPath: '$(Pipeline.Workspace)/manifests'
+      - task: KubernetesManifest@0
+        inputs:
+          action: 'createSecret'
+          kubernetesServiceConnection: 'kubernetesdemo'
+          namespace: 'default'
+          secretType: 'dockerRegistry'
+          secretName: '$(acrsecret)'
+          dockerRegistryEndpoint: 'myregistrydemo1'
+      - task: KubernetesManifest@0
+        inputs:
+         action: 'deploy'
+         kubernetesServiceConnection: 'kubernetesdemo'
+         namespace: 'default'
+         manifests: |
+           '$(Pipeline.Workspace)/manifests/deployment.yml'
+           '$(Pipeline.Workspace)/manifests/service.yml'
