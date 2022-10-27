@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: onlinebookstore
 spec:
-  replicas: 1
+  replicas: #replicaNo#
   selector:
     matchLabels:
       app: onlinebookstore
