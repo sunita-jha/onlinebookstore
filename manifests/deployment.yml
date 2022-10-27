@@ -1,19 +1,19 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: image2 
+  name: onlinebookstore
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: image2
+      app: onlinebookstore
   template:
     metadata:
       labels:
-        app: image2 
+        app: onlinebookstore 
     spec:
       containers:
-        - name: image2 
-          image: myregistrydemo1.azurecr.io/image2
+        - name: onlinebookstore 
+          image: myregistrydemo1.azurecr.io/onlinebookstore
           ports:
           - containerPort: 8080
